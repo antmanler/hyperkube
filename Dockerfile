@@ -1,10 +1,3 @@
-FROM gcr.io/google_containers/hyperkube:v1.11.3
-RUN clean-install apt-transport-https gnupg1 curl \
-    && echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ stretch main" > \
-    /etc/apt/sources.list.d/azure-cli.list \
-    && curl -L https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
-    && apt-get purge gnupg \
-    && clean-install \
-    xfsprogs \
+FROM gcr.io/google_containers/hyperkube-arm64:v1.11.3
+RUN clean-install apt-transport-https curl \
     open-iscsi \
-    azure-cli \
